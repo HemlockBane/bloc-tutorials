@@ -1,5 +1,5 @@
 import 'package:bloc_test_2/src/blocs/counter_bloc.dart';
-import 'package:bloc_test_2/src/screens/counter_screen.dart';
+import 'package:bloc_test_2/src/screens/timer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       ),
       home: BlocProvider(
         create: (context) => CounterBloc(),
-        child: CounterScreen(title: 'Flutter Demo Home Page'),
+        child: TimerScreen(),
       ),
     );
   }
