@@ -1,29 +1,29 @@
 import 'dart:async';
 
 import 'package:bloc_test_2/src/blocs/counter_bloc.dart';
+import 'package:bloc_test_2/src/ticker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
+class CounterScreen extends StatefulWidget {
+  CounterScreen({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _CounterScreenState createState() => _CounterScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _CounterScreenState extends State<CounterScreen> {
   CounterBloc counterBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    Ticker().tick(ticks: 5).listen((value) {
+      print(value);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: BlocBuilder<CounterBloc, int>(
-        builder: (context, counter) {
+        // Rebuilds when a stream arrives
+        builder: (context, count) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text(
                   'You have pushed the button this many times:',
                 ),
-                Text(counter.toString())
+                Text(count.toString())
               ],
             ),
           );
