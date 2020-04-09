@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc_test_2/src/blocs/counter_bloc.dart';
-import 'package:bloc_test_2/src/ticker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,14 +15,6 @@ class CounterScreen extends StatefulWidget {
 
 class _CounterScreenState extends State<CounterScreen> {
   CounterBloc counterBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    Ticker().tick(ticks: 5).listen((value) {
-      print(value);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
