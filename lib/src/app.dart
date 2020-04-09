@@ -1,5 +1,7 @@
 import 'package:bloc_test_2/src/blocs/counter_bloc.dart';
+import 'package:bloc_test_2/src/blocs/timer_bloc/timer_bloc.dart';
 import 'package:bloc_test_2/src/screens/timer_screen.dart';
+import 'package:bloc_test_2/src/ticker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: BlocProvider(
-        create: (context) => CounterBloc(),
+        create: (context) => TimerBloc(ticker: Ticker()),
         child: TimerScreen(),
       ),
     );
