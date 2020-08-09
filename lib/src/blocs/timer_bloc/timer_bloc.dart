@@ -20,17 +20,17 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   TimerState get initialState => ReadyState(_duration);
 
   @override
-  Stream<TimerState> mapEventToState(TimerEvent event) async* {
-    if (event is StartEvent) {
-      yield* _mapStartEventToState(event);
-    } else if (event is TickEvent) {
-      yield* _mapTickEventToState(event);
-    } else if (event is PauseEvent) {
-      yield* _mapPauseEventToState(event);
-    } else if (event is ResumeEvent) {
-      yield* _mapResumeEventToState(event);
-    } else if (event is ResetEvent) {
-      yield* _mapResetEventToState(event);
+  Stream<TimerState> mapEventToState(TimerEvent timerEvent) async* {
+    if (timerEvent is StartEvent) {
+      yield* _mapStartEventToState(timerEvent);
+    } else if (timerEvent is TickEvent) {
+      yield* _mapTickEventToState(timerEvent);
+    } else if (timerEvent is PauseEvent) {
+      yield* _mapPauseEventToState(timerEvent);
+    } else if (timerEvent is ResumeEvent) {
+      yield* _mapResumeEventToState(timerEvent);
+    } else if (timerEvent is ResetEvent) {
+      yield* _mapResetEventToState(timerEvent);
     }
   }
 
@@ -69,7 +69,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
     }
   }
 
-  Stream<TimerState> _mapResetEventToState(ResetEvent event) async* {
+  Stream<TimerState> _mapResetEventToState(ResetEvent resetEvent) async* {
     _tickSubscription?.cancel();
     yield ReadyState(_duration);
   }
